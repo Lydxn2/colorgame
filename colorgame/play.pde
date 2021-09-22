@@ -45,21 +45,14 @@ void doPlay() {
   textAlign(LEFT, CENTER);
   textFont(roboFontB, 80);
   
-  if (impossible) {
-    pushMatrix();
-    translate(colorX, 60);
-    rotate(radians(180));
-    text(colorNames[textColor], 0, 0);
-    popMatrix();
-  } else {
+  if (impossible)
+    text(new String(reverse(colorNames[textColor].toCharArray())), colorX, 35);
+  else
     text(colorNames[textColor], colorX, 35);
-  }
 
   // snooze, you lose
   colorX += speed;
-  if (!impossible && colorX > width)
-    mode = MODE_GAMEOVER;
-  if (impossible && colorX - textWidth(colorNames[textColor]) > width)
+  if (colorX > width)
     mode = MODE_GAMEOVER;
   
   // display score
